@@ -1,5 +1,5 @@
 {
-  "name": "doca",
+  "name": "@addaps/doca",
   "version": "0.4.0",
   "description": "A CLI tool that scaffolds API documentation based on JSON HyperSchemas.",
   "main": "./lib/main.js",
@@ -50,5 +50,11 @@
     "mock-fs": "^3.11.0",
     "sinon": "^1.17.4",
     "sinon-chai": "^2.8.0"
+  },
+  "directories": {
+    "doc": "docs",
+    "example": "example",
+    "lib": "lib",
+    "test": "test"
   }
 }
