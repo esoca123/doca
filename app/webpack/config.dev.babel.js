@@ -4,6 +4,36 @@ import ip from 'ip';
 import { HOT_RELOAD_PORT, SRC_DIR, BUILD_DIR } from './constants';
 import config from '../config';
 
+
+const B = require('bluebird');
+const fs = B.promisifyAll(require("fs"));
+
+
+let appRootPath = '/Users/esoca123/local/repos/addaps_api_v2';
+
+const dereferenceAddapsResolver = {
+    order: 1,
+    canRead: file => {
+
+        let { url } = file;
+
+        return /^\/schemas\//.test(url)
+        return true
+    },
+    read: file => {
+
+        let { extension, url } = file;
+
+        let pathWithSlash = file.url
+
+        let path = `${appRootPath}${pathWithSlash}`;
+
+        return fs.readFileAsync(path)
+    }
+}
+
+
+
 export default {
   cache: true,
   devtool: 'eval-cheap-module-source-map',
@@ -54,7 +84,18 @@ export default {
       exclude: path.resolve(__dirname, '../node_modules'),
       use: [
         `json-schema-example-loader?${JSON.stringify(config)}`,
-        'json-schema-loader',
+        {
+            loader: '@addaps/json-schema-loader',
+            options: {
+                'json-schema-ref-parser': {
+                    dereferenceOptions: {
+                        resolve: {
+                            addaps: dereferenceAddapsResolver
+                        }
+                    }
+                }
+            }
+        }
       ],
     }],
   },
