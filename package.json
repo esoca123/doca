@@ -12,7 +12,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/cloudflare/doca.git"
+    "url": "git+https://github.com/esoca123/doca"
   },
   "keywords": [
     "doca",
@@ -26,9 +26,9 @@
   "author": "Vojtech Miksu <vojtech@miksu.cz>",
   "license": "BSD-3-Clause",
   "bugs": {
-    "url": "https://github.com/cloudflare/doca/issues"
+    "url": "https://github.com/esoca123/doca/issues"
   },
-  "homepage": "https://github.com/cloudflare/doca#readme",
+  "homepage": "https://github.com/esoca123/doca#readme",
   "dependencies": {
     "chalk": "^1.1.3",
     "commander": "^2.9.0",
