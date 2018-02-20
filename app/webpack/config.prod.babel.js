@@ -6,6 +6,39 @@ import chalk from 'chalk';
 import { SRC_DIR, BUILD_DIR } from './constants';
 import config from '../config';
 
+
+const B = require('bluebird');
+const fs = B.promisifyAll(require("fs"));
+
+
+let appRootPath = path.join(__dirname, '..', '..');
+
+const dereferenceAddapsResolver = {
+    order: 1,
+    canRead: file => {
+
+        let { url } = file;
+
+        console.log('------canRead------', url)
+
+        return /^\/schemas\//.test(url)
+    },
+    read: file => {
+
+        let { extension, url } = file;
+
+        let pathWithSlash = file.url
+
+        let path = `${appRootPath}${pathWithSlash}`;
+
+        console.log('------path------', path)
+
+
+        return fs.readFileAsync(path)
+    }
+}
+
+
 export default {
   cache: false,
   entry: {
@@ -51,7 +84,18 @@ export default {
       exclude: path.resolve(__dirname, '../node_modules'),
       use: [
         `json-schema-example-loader?${JSON.stringify(config)}`,
-        'json-schema-loader',
+        {
+            loader: '@addaps/json-schema-loader',
+            options: {
+                'json-schema-ref-parser': {
+                    dereferenceOptions: {
+                        resolve: {
+                            addaps: dereferenceAddapsResolver
+                        }
+                    }
+                }
+            }
+        }
       ],
     }],
   },

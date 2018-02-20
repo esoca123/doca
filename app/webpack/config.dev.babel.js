@@ -9,7 +9,7 @@ const B = require('bluebird');
 const fs = B.promisifyAll(require("fs"));
 
 
-let appRootPath = '/Users/esoca123/local/repos/addaps_api_v2';
+let appRootPath = path.join(__dirname, '..', '..');
 
 const dereferenceAddapsResolver = {
     order: 1,
@@ -17,8 +17,9 @@ const dereferenceAddapsResolver = {
 
         let { url } = file;
 
+        console.log('------canRead------', url)
+
         return /^\/schemas\//.test(url)
-        return true
     },
     read: file => {
 
@@ -27,6 +28,9 @@ const dereferenceAddapsResolver = {
         let pathWithSlash = file.url
 
         let path = `${appRootPath}${pathWithSlash}`;
+
+        console.log('------path------', path)
+
 
         return fs.readFileAsync(path)
     }
