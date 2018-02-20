@@ -1,6 +1,6 @@
 {
   "name": "@addaps/doca",
-  "version": "0.5.1",
+  "version": "0.5.2",
   "description": "A CLI tool that scaffolds API documentation based on JSON HyperSchemas.",
   "main": "./lib/main.js",
   "bin": {
