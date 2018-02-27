@@ -17,8 +17,7 @@ try {
 
 const mapStateToProps = state => ({
   schemas: state.schemas,
-  config,
-  introduction: Introduction,
+  config
 });
 
 const Main = connect(
