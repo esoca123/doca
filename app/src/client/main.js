@@ -1,6 +1,5 @@
 import { connect } from 'react-redux';
 import { App } from 'doca-bootstrap-theme';
-import Introduction from './introduction';
 import config from '../../config';
 
 // this dynamically imports css, less and sass from the "THEME/styles"
